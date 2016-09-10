@@ -1,0 +1,12 @@
+source "http://rubygems.org"
+
+gem "hammer"
+
+group :test do
+  gem "minitest"
+end
+
+group :development do
+  gem "awesome_print"
+  gem "travis"
+end
