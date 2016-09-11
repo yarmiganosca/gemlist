@@ -1,8 +1,19 @@
 # Gemlist
 
-Get a list of gems Bundler would install under various conditions. Designed to be used by build tools.
+I built `gemlist` because I wanted a programmatic way to do what [dundler](http://github.com/samphippen/dundler) does:
+1. figure out what gems would be installed by a given project
+2. give each one a separate `RUN gem install $name -v $version` line in a Dockerfile
 
+I want this capability because a containerization tool I work on builds Docker images from template-generated Dockerfiles, and it'd be nice to not have to wait for `nokogiri` to re-install every time we need to re-containerize a Rails application (as an example).
 
+Given this, I have a very specific set of assumptions:
+1. I don't care about local (`path => ...`) dependencies.
+2. I don't care about git (`git => ...`) dependencies.
+3. I do care about being able to include or exclude bundle groups.
+4. I don't actually want to install gems, just get a list of them.
+5. I have local filesystem access to the Gemfile and Gemfile.lock of the target project.
+
+If these assumptions line up with a problem you're trying to solve, then I hope this saves you time and energy! And, if it does, feel free to contact me, because I'd be interested to hear about the container or container-adjacent things you're doing with this.
 
 ## Installation
 
