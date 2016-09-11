@@ -1,12 +1,14 @@
 source "http://rubygems.org"
 
 gem "hammer"
+gem "gemlist", path: "../../.."
 
-group :test do
+group :development, :test do
   gem "minitest"
 end
 
 group :development do
   gem "awesome_print"
   gem "travis"
+  gem 'pry'
 end
