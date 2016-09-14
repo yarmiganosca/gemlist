@@ -20,7 +20,7 @@ class Gemlist
   private
 
   def specs
-    spec_tree = SpecTree.new(lockfile)
+    spec_tree = SpecTree.new(path/"Gemfile.lock")
 
     spec_tree
       .depth_first_children_first
@@ -41,11 +41,7 @@ class Gemlist
     builder = Bundler::Dsl.new
     builder.eval_gemfile(path/"Gemfile")
 
-    @bundle_definition = builder.to_definition(lockfile, {})
-  end
-
-  def lockfile
-    @lockfile ||= path/"Gemfile.lock"
+    @bundle_definition = builder.to_definition(path/"Gemfile.lock", {})
   end
 
   def groups
