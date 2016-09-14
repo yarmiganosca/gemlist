@@ -1,12 +1,12 @@
 require "pathname"
 require "gemlist/version"
-require "gemlist/options"
+require 'gemlist/group_conflict'
 require "gemlist/spec_tree"
 
 class Gemlist
   def initialize(path, options = {})
     @path    = Pathname.new(path)
-    @options = Options.new(options)
+    @options = options
   end
 
   def gems
@@ -49,7 +49,14 @@ class Gemlist
   end
 
   def groups
-    bundle_definition.groups + options.included_groups - options.excluded_groups
+    excluded_groups = options.fetch(:without) { [] }
+    included_groups = options.fetch(:with) { [] }
+
+    intersection    = excluded_groups & included_groups
+
+    raise GroupConflict.new(*intersection) if intersection.any?
+
+    bundle_definition.groups + included_groups - excluded_groups
   end
 
   attr_reader :path, :options

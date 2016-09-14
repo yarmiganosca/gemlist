@@ -8,7 +8,7 @@ describe Gemlist do
 
   it "blows up if given conflicting group lists" do
     expect {
-      Gemlist.new(test_project, without: [:development, :test], with: [:development])
+      Gemlist.new(test_project, without: [:development, :test], with: [:development]).gems
     }.to raise_error(Gemlist::GroupConflict, /development/)
   end
 end
