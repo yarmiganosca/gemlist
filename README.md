@@ -13,7 +13,7 @@ Given this, I have a very specific set of assumptions:
 4. I don't actually want to install gems, just get a list of them.
 5. I have local filesystem access to the Gemfile and Gemfile.lock of the target project.
 
-If these assumptions line up with a problem you're trying to solve, then I hope this saves you time and energy! And, if it does, feel free to contact me, because I'd be interested to hear about the container or container-adjacent things you're doing with this.
+If these assumptions line up with a problem you're trying to solve, then I hope this saves you time and energy! And, if it does, feel free to contact me, because I'd be interested in hearing about the container or container-adjacent things you're doing with this.
 
 ## Installation
 
