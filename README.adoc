@@ -9,8 +9,8 @@ I want this capability because a containerization tool I work on builds Docker i
 
 Given this, I have a very specific set of assumptions:
 
-* I don't care about local (`path => ...`) dependencies.
-* I don't care about git (`git => ...`) dependencies.
+* I don't care about local (`:path \=> \...`) dependencies.
+* I don't care about git (`:git \=> \...`) dependencies.
 * I do care about being able to include or exclude bundle groups.
 * I don't actually want to install gems, just get a list of them.
 * I have local filesystem access to the Gemfile and Gemfile.lock of the target project.
