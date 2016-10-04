@@ -17,6 +17,30 @@ Given this, I have a very specific set of assumptions:
 
 If these assumptions line up with a problem you're trying to solve, then I hope this saves you time and energy! And, if it does, feel free to contact me, because I'd be interested in hearing about the super-cool thing you're doing with this.
 
+== Use
+
+```ruby
+require 'gemlist'
+
+gemlist = Gemlist.new("/path/to/project")
+
+gemlist.gems.each do |gem|
+  puts "RUN gem install #{gem.name} -v #{gem.version}"
+end
+```
+
+If you want to exclude gem groups, you can do that:
+
+```ruby
+gemlist = Gemlist.new("/path/to/project", without: [:development, :test])
+```
+
+If you want to include addition gem groups, you can do that too:
+
+```ruby
+gemlist = Gemlist.new("/path/to/project", with: [:assets])
+```
+
 == Installation
 
 Add this line to your application's Gemfile:
