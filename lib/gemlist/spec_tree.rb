@@ -3,9 +3,7 @@ require 'gemlist/spec_node'
 
 class Gemlist
   class SpecTree < SpecNode
-    def initialize(lockfile)
-      lockfile_parser = Bundler::LockfileParser.new(lockfile.read)
-
+    def initialize(lockfile_parser)
       super("root", lockfile_parser)
 
       specs_to_place = lockfile_parser.specs.to_set

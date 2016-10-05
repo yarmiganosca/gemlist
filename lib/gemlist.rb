@@ -9,6 +9,10 @@ class Gemlist
     @options = options
   end
 
+  def sources
+    lockfile_parser.sources.flat_map(&:remotes).map(&:to_s)
+  end
+
   def gems
     cached_specs = specs
 
@@ -22,7 +26,7 @@ class Gemlist
   private
 
   def specs
-    spec_tree = SpecTree.new(path/"Gemfile.lock")
+    spec_tree = SpecTree.new(lockfile_parser)
 
     spec_tree
       .depth_first_children_first
@@ -44,6 +48,10 @@ class Gemlist
     builder.eval_gemfile(path/"Gemfile")
 
     @bundle_definition = builder.to_definition(path/"Gemfile.lock", {})
+  end
+
+  def lockfile_parser
+    @lockfile_parser = Bundler::LockfileParser.new((path/"Gemfile.lock").read)
   end
 
   def groups
