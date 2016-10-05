@@ -10,7 +10,10 @@ class Gemlist
   end
 
   def sources
-    lockfile_parser.sources.flat_map(&:remotes).map(&:to_s)
+    lockfile_parser.sources
+      .select { |source| source.is_a?(Bundler::Source::Rubygems) }
+      .flat_map(&:remotes)
+      .map(&:to_s)
   end
 
   def gems
