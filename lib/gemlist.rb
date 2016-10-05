@@ -10,8 +10,10 @@ class Gemlist
   end
 
   def gems
-    specs.each.with_index.with_object([]) do |(spec, index), uniquified_specs|
-      last_occurrence_of_spec = specs.rindex(spec) == index
+    cached_specs = specs
+
+    cached_specs.each.with_index.with_object([]) do |(spec, index), uniquified_specs|
+      last_occurrence_of_spec = cached_specs.rindex(spec) == index
 
       uniquified_specs << spec if last_occurrence_of_spec
     end
