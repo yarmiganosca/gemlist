@@ -26,7 +26,7 @@ class Gemlist
 
     spec_tree
       .depth_first_children_first
-      .reject(&:is_root?)
+      .reject(&:root?)
       .select { |node| node.descends_from?(*top_level_dependencies) }
       .map(&:content)
   end
